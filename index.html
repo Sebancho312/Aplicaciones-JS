@@ -1,26 +1,177 @@
+
 <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-        <script src="IMC.js" defer></script>
-    </head>
-    <body>
+    <title>Factura Minecraft 5toA</title>
 
-        <section class="container bg-primary">
-        <h3>Capturando valores de los inputs</h3>
-        <input type="text" id="peso" required placeholder="Peso">
-        <input type="text" id="estatura" required placeholder="Estatura - Ejem: 1.70">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-        <button id="btnIMC">Calcular IMC</button>
-        <h2 id="resultadoIMC"></h2>
-        <h3 id="mensaje"></h3>
-        </section>   
+    <script src="factura.js" defer></script>
+</head>
 
-    </body>
+<body class="bg-light">
+
+    <div class="container py-4">
+
+        <!-- TITULO -->
+        <header class="bg-success text-white text-center p-4 rounded shadow-sm mb-4">
+            <h2>⛏️ Factura Minecraft</h2>
+            <h5>5to A - Sistema de Facturación</h5>
+        </header>
+
+        <!-- DATOS DEL CLIENTE -->
+        <section class="card shadow-sm mb-4">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0">Datos del Cliente</h4>
+            </div>
+
+            <div class="card-body">
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+                        <label class="form-label">Cliente</label>
+                        <input type="text"
+                               class="form-control"
+                               id="nombreCliente"
+                               placeholder="Nombre del cliente">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Cédula</label>
+                        <input type="text"
+                               class="form-control"
+                               id="cedulaCliente"
+                               placeholder="Ingrese la cédula">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Sexo</label>
+                        <input type="text"
+                               class="form-control"
+                               id="sexoCliente"
+                               placeholder="Ingrese el sexo">
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- AGREGAR PRODUCTO -->
+        <section class="card shadow-sm mb-4">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Agregar Producto</h4>
+            </div>
+
+            <div class="card-body">
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+                        <label class="form-label">Producto</label>
+                        <input type="text"
+                               class="form-control"
+                               id="Producto"
+                               placeholder="Nombre del producto">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Cantidad</label>
+                        <input type="number"
+                               class="form-control"
+                               id="Cantidad"
+                               min="1"
+                               placeholder="Cantidad">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Precio</label>
+                        <input type="number"
+                               class="form-control"
+                               id="Precio"
+                               min="0"
+                               step="0.01"
+                               placeholder="Precio">
+                    </div>
+
+                </div>
+
+                <button type="button"
+                        class="btn btn-success mt-3 w-100"
+                        id="btnAgregarProducto">
+                    Agregar Producto
+                </button>
+
+            </div>
+        </section>
+
+        <!-- LISTA DE PRODUCTOS -->
+        <section class="card shadow-sm mb-4">
+            <div class="card-header bg-dark text-white">
+                <h4 class="mb-0">Lista de Productos</h4>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+
+                    <table class="table table-striped table-bordered table-hover text-center">
+
+                        <thead class="table-success">
+                            <tr>
+                                <th>Producto</th>
+                                <th>Cantidad</th>
+                                <th>Precio</th>
+                                <th>Subtotal</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="detalleFactura">
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- RESUMEN DE LA FACTURA -->
+        <section class="card shadow-sm mb-4">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0">Resumen de la Factura</h4>
+            </div>
+
+            <div class="card-body bg-white">
+
+                <div class="d-flex justify-content-between">
+                    <h5>Subtotal:</h5>
+                    <h5 id="subtotalGeneral">0.00</h5>
+                </div>
+
+                <hr>
+
+                <div class="d-flex justify-content-between">
+                    <h5>IVA (15%):</h5>
+                    <h5 id="ivaGeneral">0.00</h5>
+                </div>
+
+                <hr>
+
+                <div class="d-flex justify-content-between bg-success text-white p-3 rounded">
+                    <h4 class="mb-0">Total a pagar:</h4>
+                    <h4 id="totalGeneral" class="mb-0">0.00</h4>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PIE DE PAGINA -->
+        <footer class="bg-dark text-white text-center p-3 rounded">
+            <p class="mb-0">Factura Minecraft - 5to A</p>
+        </footer>
+
+    </div>
+
+</body>
 </html>
